@@ -50,9 +50,9 @@ namespace ScreenSound
                         break;
                     case 3: AvaliarBanda();
                         break;
-                    case 4: Console.WriteLine();
+                    case 4: ExibirMediaDasBandas();
                         break;
-                    case 5: Console.WriteLine();
+                    case 5:Environment.Exit(0);
                         break;
                     default: Console.WriteLine("Opção invalida!");
                         break;
@@ -122,6 +122,31 @@ namespace ScreenSound
                 {
                     Console.WriteLine("Sinto muito! a banda que voce informou não está cadastrada");
                     Console.WriteLine("Digite qualquer tecla para voltar ao menu inicial");
+                    Console.ReadKey();
+                    Console.Clear();
+                    MenuPrincipal();
+                }
+            }
+
+            void ExibirMediaDasBandas()
+            {
+                Console.Clear();
+                ExibirTituloDaOpcao("EXIBIR MÉDIA DA BANDA");
+                Console.Write("Qual a banda que deseja verificar a média? ");
+                string nomeDaBanda = Console.ReadLine()!;
+                
+                if (BandasCadastradas.ContainsKey(nomeDaBanda))
+                {
+                    List<int> notasDaBanda = BandasCadastradas[nomeDaBanda];
+                    Console.WriteLine($"A {nomeDaBanda} está com a média de {notasDaBanda.Average()}");
+                    Console.WriteLine("Digite qualquer tecla para voltar ao menu inicial");
+                    Console.ReadKey();
+                    Console.Clear();
+                    MenuPrincipal();
+                } else
+                {
+                    Console.WriteLine("A banda que você digitou não consta no nosso sistema.");
+                    Console.WriteLine("Digite uma tecla para voltar ao menu principal");
                     Console.ReadKey();
                     Console.Clear();
                     MenuPrincipal();
